@@ -1,0 +1,1080 @@
+'Neos.Neos:ContentCollection':
+  constraints:
+    nodeTypes:
+      'Dorfjungs.Neos.FlexboxGrid:CustomColumn': false
+      'Neos.NodeTypes:TwoColumn': false
+      'Neos.NodeTypes:ThreeColumn': false
+      'Neos.NodeTypes:FourColumn': false
+
+'Dorfjungs.Neos.FlexboxGrid:GridTab':
+  superTypes:
+    'Neos.Neos:Content': true
+  abstract: true
+  ui:
+    inspector:
+      tabs:
+        gridtab:
+          label: 'Grid settings'
+          icon: 'icon-columns'
+      groups:
+        gridsystem:
+          tab: 'gridtab'
+          label: 'Layout'
+
+'Dorfjungs.Neos.FlexboxGrid:Container':
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    group: 'grid'
+    label: 'Container'
+    icon: 'icon-folder-open-alt'
+    inlineEditable: true
+    inspector:
+      groups:
+        container:
+          label: 'Container-Layout'
+          position: 5
+  childNodes:
+    containercontent:
+      type: 'Neos.Neos:ContentCollection'
+  properties:
+    'layout':
+      type: 'string'
+      defaultValue: 'container'
+      ui:
+        label: 'Layout'
+        reloadIfChanged: true
+        inspector:
+          group: 'container'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              container:
+                label: 'Fixed container'
+              container-fluid:
+                label: 'Fluid container'
+    classes:
+      type: 'string'
+      ui:
+        label: 'Additional Classes'
+        reloadIfChanged: true
+        placeHolder: 'test'
+        inspector:
+          group: 'container'
+          editorOptions:
+            placeholder: 'myClass anotherClass'
+
+'Dorfjungs.Neos.FlexboxGrid:Row':
+  superTypes:
+    'Dorfjungs.Neos.FlexboxGrid:GridTab': true
+  abstract: true
+  ui:
+    group: 'grid'
+    label: 'GridRow'
+    icon: 'icon-columns'
+    inlineEditable: true
+  properties:
+    'layout':
+      type: 'string'
+      ui:
+        label: 'Predefined'
+        inspector:
+          group: 'gridsystem'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+    classes:
+      type: 'string'
+      ui:
+        label: 'Custom classes'
+        inspector:
+          group: 'gridsystem'
+
+'Dorfjungs.Neos.FlexboxGrid:TwoColumn':
+  superTypes:
+    'Dorfjungs.Neos.FlexboxGrid:Row': true
+  ui:
+    label: 'Two Columns'
+  childNodes:
+    columnleft:
+      type: 'Neos.Neos:ContentCollection'
+    columnright:
+      type: 'Neos.Neos:ContentCollection'
+  properties:
+    'layout':
+      defaultValue: 50-50
+      ui:
+        reloadIfChanged: true
+        inspector:
+          editorOptions:
+            values:
+              50-50:
+                label: '50% / 50%'
+              75-25:
+                label: '75% / 25%'
+              25-75:
+                label: '25% / 75%'
+              66-33:
+                label: '66% / 33%'
+              33-66:
+                label: '33% / 66%'
+              20-80:
+                label: '20% / 80%'
+              80-20:
+                label: '80% / 20%'
+
+'Dorfjungs.Neos.FlexboxGrid:ThreeColumn':
+  superTypes:
+    'Dorfjungs.Neos.FlexboxGrid:Row': true
+  ui:
+    label: 'Three Columns'
+  childNodes:
+    columnleft:
+      type: 'Neos.Neos:ContentCollection'
+    columnmiddle:
+      type: 'Neos.Neos:ContentCollection'
+    columnright:
+      type: 'Neos.Neos:ContentCollection'
+  properties:
+    'layout':
+      defaultValue: 33-33-33
+      ui:
+        reloadIfChanged: true
+        inspector:
+          editorOptions:
+            values:
+              33-33-33:
+                label: '33% / 33% / 33%'
+              25-50-25:
+                label: '25% / 50% / 25%'
+              50-25-25:
+                label: '50% / 25% / 25%'
+              25-25-50:
+                label: '25% / 25% / 50%'
+
+'Dorfjungs.Neos.FlexboxGrid:FourColumn':
+  superTypes:
+    'Dorfjungs.Neos.FlexboxGrid:Row': true
+  ui:
+    label: 'Four Columns'
+  childNodes:
+    column1:
+      type: 'Neos.Neos:ContentCollection'
+    column2:
+      type: 'Neos.Neos:ContentCollection'
+    column3:
+      type: 'Neos.Neos:ContentCollection'
+    column4:
+      type: 'Neos.Neos:ContentCollection'
+  properties:
+    'layout':
+      defaultValue: 25-25-25-25
+      ui:
+        reloadIfChanged: true
+        inspector:
+          editorOptions:
+            values:
+              25-25-25-25:
+                label: '25% / 25% / 25% / 25%'
+
+'Dorfjungs.Neos.FlexboxGrid:CustomColumn':
+  superTypes:
+    'Dorfjungs.Neos.FlexboxGrid:GridTab': true
+  ui:
+    label: Flex Column
+    group: grid
+    icon: icon-columns
+    inlineEditable: true
+    inspector:
+      groups:
+        size:
+          label: 'Grid size'
+          tab: gridtab
+        visible:
+          label: Visibility
+          tab: gridtab
+        hidden:
+          label: Hidden
+          tab: gridtab
+        offset:
+          label: Offset
+          tab: gridtab
+        orderingPull:
+          label: 'Ordering Pull'
+          tab: gridtab
+        orderingPush:
+          label: 'Ordering Push'
+          tab: gridtab
+  childNodes:
+    column:
+      type: 'Neos.Neos:ContentCollection'
+  properties:
+    'sizeXS':
+      type: string
+      defaultValue: col-xs-12
+      ui:
+        label: 'Size XS'
+        reloadIfChanged: true
+        inspector:
+          group: size
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              '':
+                label: none
+              col-xs-1:
+                label: '1'
+              col-xs-2:
+                label: '2'
+              col-xs-3:
+                label: '3'
+              col-xs-4:
+                label: '4'
+              col-xs-5:
+                label: '5'
+              col-xs-6:
+                label: '6'
+              col-xs-7:
+                label: '7'
+              col-xs-8:
+                label: '8'
+              col-xs-9:
+                label: '9'
+              col-xs-10:
+                label: '10'
+              col-xs-11:
+                label: '11'
+              col-xs-12:
+                label: '12'
+    'sizeSM':
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Size SM'
+        reloadIfChanged: true
+        inspector:
+          group: size
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            values:
+              '':
+                label: none
+              col-sm-1:
+                label: '1'
+              col-sm-2:
+                label: '2'
+              col-sm-3:
+                label: '3'
+              col-sm-4:
+                label: '4'
+              col-sm-5:
+                label: '5'
+              col-sm-6:
+                label: '6'
+              col-sm-7:
+                label: '7'
+              col-sm-8:
+                label: '8'
+              col-sm-9:
+                label: '9'
+              col-sm-10:
+                label: '10'
+              col-sm-11:
+                label: '11'
+              col-sm-12:
+                label: '12'
+    'sizeMD':
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Size MD'
+        reloadIfChanged: true
+        inspector:
+          group: size
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            values:
+              '':
+                label: none
+              col-md-1:
+                label: '1'
+              col-md-2:
+                label: '2'
+              col-md-3:
+                label: '3'
+              col-md-4:
+                label: '4'
+              col-md-5:
+                label: '5'
+              col-md-6:
+                label: '6'
+              col-md-7:
+                label: '7'
+              col-md-8:
+                label: '8'
+              col-md-9:
+                label: '9'
+              col-md-10:
+                label: '10'
+              col-md-11:
+                label: '11'
+              col-md-12:
+                label: '12'
+    'sizeLG':
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'Size LG'
+        reloadIfChanged: true
+        inspector:
+          group: size
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            values:
+              '':
+                label: none
+              col-lg-1:
+                label: '1'
+              col-lg-2:
+                label: '2'
+              col-lg-3:
+                label: '3'
+              col-lg-4:
+                label: '4'
+              col-lg-5:
+                label: '5'
+              col-lg-6:
+                label: '6'
+              col-lg-7:
+                label: '7'
+              col-lg-8:
+                label: '8'
+              col-lg-9:
+                label: '9'
+              col-lg-10:
+                label: '10'
+              col-lg-11:
+                label: '11'
+              col-lg-12:
+                label: '12'
+    'visible':
+      type: array
+      defaultValue: ''
+      ui:
+        inspector:
+          group: visible
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            multiple: true
+            placeholder: Choose
+            values:
+              visible-xs:
+                label: XS
+              visible-sm:
+                label: SM
+              visible-md:
+                label: MD
+              visible-lg:
+                label: LG
+    'hidden':
+      type: array
+      defaultValue: ''
+      ui:
+        inspector:
+          group: hidden
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            multiple: true
+            placeholder: Choose
+            values:
+              hidden-xs:
+                label: XS
+              hidden-sm:
+                label: SM
+              hidden-md:
+                label: MD
+              hidden-lg:
+                label: LG
+    'offsetXS':
+      type: string
+      defaultValue: ''
+      ui:
+        label: XS
+        inspector:
+          group: offset
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-xs-offset-1:
+                label: '1'
+              col-xs-offset-2:
+                label: '2'
+              col-xs-offset-3:
+                label: '3'
+              col-xs-offset-4:
+                label: '4'
+              col-xs-offset-5:
+                label: '5'
+              col-xs-offset-6:
+                label: '6'
+              col-xs-offset-7:
+                label: '7'
+              col-xs-offset-8:
+                label: '8'
+              col-xs-offset-9:
+                label: '9'
+              col-xs-offset-10:
+                label: '10'
+              col-xs-offset-11:
+                label: '11'
+              col-xs-offset-12:
+                label: '12'
+    'offsetSM':
+      type: string
+      defaultValue: ''
+      ui:
+        label: SM
+        inspector:
+          group: offset
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-sm-offset-1:
+                label: '1'
+              col-sm-offset-2:
+                label: '2'
+              col-sm-offset-3:
+                label: '3'
+              col-sm-offset-4:
+                label: '4'
+              col-sm-offset-5:
+                label: '5'
+              col-sm-offset-6:
+                label: '6'
+              col-sm-offset-7:
+                label: '7'
+              col-sm-offset-8:
+                label: '8'
+              col-sm-offset-9:
+                label: '9'
+              col-sm-offset-10:
+                label: '10'
+              col-sm-offset-11:
+                label: '11'
+              col-sm-offset-12:
+                label: '12'
+    'offsetMD':
+      type: string
+      defaultValue: ''
+      ui:
+        label: MD
+        inspector:
+          group: offset
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-md-offset-1:
+                label: '1'
+              col-md-offset-2:
+                label: '2'
+              col-md-offset-3:
+                label: '3'
+              col-md-offset-4:
+                label: '4'
+              col-md-offset-5:
+                label: '5'
+              col-md-offset-6:
+                label: '6'
+              col-md-offset-7:
+                label: '7'
+              col-md-offset-8:
+                label: '8'
+              col-md-offset-9:
+                label: '9'
+              col-md-offset-10:
+                label: '10'
+              col-md-offset-11:
+                label: '11'
+              col-md-offset-12:
+                label: '12'
+    'offsetLG':
+      type: string
+      defaultValue: ''
+      ui:
+        label: LG
+        inspector:
+          group: offset
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-lg-offset-1:
+                label: '1'
+              col-lg-offset-2:
+                label: '2'
+              col-lg-offset-3:
+                label: '3'
+              col-lg-offset-4:
+                label: '4'
+              col-lg-offset-5:
+                label: '5'
+              col-lg-offset-6:
+                label: '6'
+              col-lg-offset-7:
+                label: '7'
+              col-lg-offset-8:
+                label: '8'
+              col-lg-offset-9:
+                label: '9'
+              col-lg-offset-10:
+                label: '10'
+              col-lg-offset-11:
+                label: '11'
+              col-lg-offset-12:
+                label: '12'
+    'pullXS':
+      type: string
+      defaultValue: ''
+      ui:
+        label: XS
+        inspector:
+          group: orderingPull
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-xs-pull-1:
+                label: '1'
+              col-xs-pull-2:
+                label: '2'
+              col-xs-pull-3:
+                label: '3'
+              col-xs-pull-4:
+                label: '4'
+              col-xs-pull-5:
+                label: '5'
+              col-xs-pull-6:
+                label: '6'
+              col-xs-pull-7:
+                label: '7'
+              col-xs-pull-8:
+                label: '8'
+              col-xs-pull-9:
+                label: '9'
+              col-xs-pull-10:
+                label: '10'
+              col-xs-pull-11:
+                label: '11'
+              col-xs-pull-12:
+                label: '12'
+    'pullSM':
+      type: string
+      defaultValue: ''
+      ui:
+        label: SM
+        inspector:
+          group: orderingPull
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-sm-pull-1:
+                label: '1'
+              col-sm-pull-2:
+                label: '2'
+              col-sm-pull-3:
+                label: '3'
+              col-sm-pull-4:
+                label: '4'
+              col-sm-pull-5:
+                label: '5'
+              col-sm-pull-6:
+                label: '6'
+              col-sm-pull-7:
+                label: '7'
+              col-sm-pull-8:
+                label: '8'
+              col-sm-pull-9:
+                label: '9'
+              col-sm-pull-10:
+                label: '10'
+              col-sm-pull-11:
+                label: '11'
+              col-sm-pull-12:
+                label: '12'
+    'pullMD':
+      type: string
+      defaultValue: ''
+      ui:
+        label: MD
+        inspector:
+          group: orderingPull
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-md-pull-1:
+                label: '1'
+              col-md-pull-2:
+                label: '2'
+              col-md-pull-3:
+                label: '3'
+              col-md-pull-4:
+                label: '4'
+              col-md-pull-5:
+                label: '5'
+              col-md-pull-6:
+                label: '6'
+              col-md-pull-7:
+                label: '7'
+              col-md-pull-8:
+                label: '8'
+              col-md-pull-9:
+                label: '9'
+              col-md-pull-10:
+                label: '10'
+              col-md-pull-11:
+                label: '11'
+              col-md-pull-12:
+                label: '12'
+    'pullLG':
+      type: string
+      defaultValue: ''
+      ui:
+        label: LG
+        inspector:
+          group: orderingPull
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-lg-pull-1:
+                label: '1'
+              col-lg-pull-2:
+                label: '2'
+              col-lg-pull-3:
+                label: '3'
+              col-lg-pull-4:
+                label: '4'
+              col-lg-pull-5:
+                label: '5'
+              col-lg-pull-6:
+                label: '6'
+              col-lg-pull-7:
+                label: '7'
+              col-lg-pull-8:
+                label: '8'
+              col-lg-pull-9:
+                label: '9'
+              col-lg-pull-10:
+                label: '10'
+              col-lg-pull-11:
+                label: '11'
+              col-lg-pull-12:
+                label: '12'
+    'pushXS':
+      type: string
+      defaultValue: ''
+      ui:
+        label: XS
+        inspector:
+          group: orderingPush
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-xs-push-1:
+                label: '1'
+              col-xs-push-2:
+                label: '2'
+              col-xs-push-3:
+                label: '3'
+              col-xs-push-4:
+                label: '4'
+              col-xs-push-5:
+                label: '5'
+              col-xs-push-6:
+                label: '6'
+              col-xs-push-7:
+                label: '7'
+              col-xs-push-8:
+                label: '8'
+              col-xs-push-9:
+                label: '9'
+              col-xs-push-10:
+                label: '10'
+              col-xs-push-11:
+                label: '11'
+              col-xs-push-12:
+                label: '12'
+    'pushSM':
+      type: string
+      defaultValue: ''
+      ui:
+        label: SM
+        inspector:
+          group: orderingPush
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-sm-push-1:
+                label: '1'
+              col-sm-push-2:
+                label: '2'
+              col-sm-push-3:
+                label: '3'
+              col-sm-push-4:
+                label: '4'
+              col-sm-push-5:
+                label: '5'
+              col-sm-push-6:
+                label: '6'
+              col-sm-push-7:
+                label: '7'
+              col-sm-push-8:
+                label: '8'
+              col-sm-push-9:
+                label: '9'
+              col-sm-push-10:
+                label: '10'
+              col-sm-push-11:
+                label: '11'
+              col-sm-push-12:
+                label: '12'
+    'pushMD':
+      type: string
+      defaultValue: ''
+      ui:
+        label: MD
+        inspector:
+          group: orderingPush
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-md-push-1:
+                label: '1'
+              col-md-push-2:
+                label: '2'
+              col-md-push-3:
+                label: '3'
+              col-md-push-4:
+                label: '4'
+              col-md-push-5:
+                label: '5'
+              col-md-push-6:
+                label: '6'
+              col-md-push-7:
+                label: '7'
+              col-md-push-8:
+                label: '8'
+              col-md-push-9:
+                label: '9'
+              col-md-push-10:
+                label: '10'
+              col-md-push-11:
+                label: '11'
+              col-md-push-12:
+                label: '12'
+    'pushLG':
+      type: string
+      defaultValue: ''
+      ui:
+        label: LG
+        inspector:
+          group: orderingPush
+          editor: Neos.Neos/Inspector/Editors/SelectBoxEditor
+          editorOptions:
+            placeholder: Choose
+            values:
+              '':
+                label: none
+              col-lg-push-1:
+                label: '1'
+              col-lg-push-2:
+                label: '2'
+              col-lg-push-3:
+                label: '3'
+              col-lg-push-4:
+                label: '4'
+              col-lg-push-5:
+                label: '5'
+              col-lg-push-6:
+                label: '6'
+              col-lg-push-7:
+                label: '7'
+              col-lg-push-8:
+                label: '8'
+              col-lg-push-9:
+                label: '9'
+              col-lg-push-10:
+                label: '10'
+              col-lg-push-11:
+                label: '11'
+              col-lg-push-12:
+                label: '12'
+    sizeXS:
+      defaultValue: 'col-xs'
+      ui:
+        inspector:
+          editorOptions:
+            values:
+              'col-xs':
+                label: 'Auto'
+    sizeSM:
+      ui:
+        inspector:
+          editorOptions:
+            values:
+              'col-sm':
+                label: 'Auto'
+    sizeMD:
+      ui:
+        inspector:
+          editorOptions:
+            values:
+              'col-md':
+                label: 'Auto'
+    sizeLG:
+      ui:
+        inspector:
+          editorOptions:
+            values:
+              'col-lg':
+                label: 'Auto'
+    visible:
+      ui:
+        inspector:
+          group: 'dont show'
+    hidden:
+      ui:
+        inspector:
+          group: 'dont show'
+
+'Dorfjungs.Neos.FlexboxGrid:CustomRow':
+  superTypes:
+    'Dorfjungs.Neos.FlexboxGrid:Row': true
+  ui:
+    label: 'Flex Row'
+    inspector:
+      groups:
+        distribution:
+          label: 'Distribution'
+          tab: gridtab
+        alignment:
+          label: 'Alignment'
+          tab: gridtab
+  childNodes:
+    columns:
+      type: 'Neos.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          'Dorfjungs.Neos.FlexboxGrid:CustomColumn': true
+          '*': false
+  properties:
+    'classes':
+      type: string
+      ui:
+        label: 'Custom classes'
+        inspector:
+          group: gridsystem
+          editorOptions:
+            placeholder: 'myClass anotherClass'
+    reverse:
+      type: boolean
+      ui:
+        label: 'Reverse'
+        inspector:
+          group: 'gridsystem'
+    alignmentXS:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'XS'
+        inspector:
+          group: 'alignment'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            placeholder: 'Choose'
+            values:
+              '':
+                label: 'none'
+              'start-xs':
+                label: 'Start'
+              'center-xs':
+                label: 'Center'
+              'end-xs':
+                label: 'End'
+              'end-xs':
+                label: 'Top'
+              'middle-xs':
+                label: 'Middle'
+              'bottom-xs':
+                label: 'Bottom'
+    alignmentSM:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'SM'
+        inspector:
+          group: 'alignment'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            placeholder: 'Choose'
+            values:
+              '':
+                label: 'none'
+              'start-sm':
+                label: 'Start'
+              'center-sm':
+                label: 'Center'
+              'end-sm':
+                label: 'End'
+              'end-sm':
+                label: 'Top'
+              'middle-sm':
+                label: 'Middle'
+              'bottom-sm':
+                label: 'Bottom'
+    alignmentMD:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'MD'
+        inspector:
+          group: 'alignment'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            placeholder: 'Choose'
+            values:
+              '':
+                label: 'none'
+              'start-md':
+                label: 'Start'
+              'center-md':
+                label: 'Center'
+              'end-md':
+                label: 'End'
+              'end-md':
+                label: 'Top'
+              'middle-md':
+                label: 'Middle'
+              'bottom-md':
+                label: 'Bottom'
+    alignmentLG:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'LG'
+        inspector:
+          group: 'alignment'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            placeholder: 'Choose'
+            values:
+              '':
+                label: 'none'
+              'start-lg':
+                label: 'Start'
+              'center-lg':
+                label: 'Center'
+              'end-lg':
+                label: 'End'
+              'end-lg':
+                label: 'Top'
+              'middle-lg':
+                label: 'Middle'
+              'bottom-lg':
+                label: 'Bottom'
+    distributionXS:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'XS'
+        inspector:
+          group: 'distribution'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            placeholder: 'Choose'
+            values:
+              '':
+                label: 'none'
+              'around-xs':
+                label: 'Around'
+              'betweeen-xs':
+                label: 'Between'
+    distributionSM:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'SM'
+        inspector:
+          group: 'distribution'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            placeholder: 'Choose'
+            values:
+              '':
+                label: 'none'
+              'around-sm':
+                label: 'Around'
+              'betweeen-sm':
+                label: 'Between'
+    distributionMD:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'MD'
+        inspector:
+          group: 'distribution'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            placeholder: 'Choose'
+            values:
+              '':
+                label: 'none'
+              'around-md':
+                label: 'Around'
+              'betweeen-md':
+                label: 'Between'
+    distributionLG:
+      type: string
+      defaultValue: ''
+      ui:
+        label: 'LG'
+        inspector:
+          group: 'distribution'
+          editor: 'Neos.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            placeholder: 'Choose'
+            values:
+              '':
+                label: 'none'
+              'around-lg':
+                label: 'Around'
+              'betweeen-lg':
+                label: 'Between'

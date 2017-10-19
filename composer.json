@@ -1,0 +1,18 @@
+{
+    "description": "",
+    "type": "neos-plugin",
+    "name": "dorfjungs/neos-flexboxgrid",
+    "require": {
+        "neos/flow": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dorfjungs\\Neos\\FlexboxGrid\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Dorfjungs.Neos.FlexboxGrid"
+        }
+    }
+}
