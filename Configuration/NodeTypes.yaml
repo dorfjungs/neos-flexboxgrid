@@ -209,7 +209,7 @@
   properties:
     'sizeXS':
       type: string
-      defaultValue: col-xs-12
+      defaultValue: 'col-xs-12'
       ui:
         label: 'Size XS'
         reloadIfChanged: true
@@ -837,43 +837,6 @@
                 label: '11'
               col-lg-push-12:
                 label: '12'
-    sizeXS:
-      defaultValue: 'col-xs'
-      ui:
-        inspector:
-          editorOptions:
-            values:
-              'col-xs':
-                label: 'Auto'
-    sizeSM:
-      ui:
-        inspector:
-          editorOptions:
-            values:
-              'col-sm':
-                label: 'Auto'
-    sizeMD:
-      ui:
-        inspector:
-          editorOptions:
-            values:
-              'col-md':
-                label: 'Auto'
-    sizeLG:
-      ui:
-        inspector:
-          editorOptions:
-            values:
-              'col-lg':
-                label: 'Auto'
-    visible:
-      ui:
-        inspector:
-          group: 'dont show'
-    hidden:
-      ui:
-        inspector:
-          group: 'dont show'
 
 'Dorfjungs.Neos.FlexboxGrid:CustomRow':
   superTypes:
@@ -929,7 +892,7 @@
                 label: 'Center'
               'end-xs':
                 label: 'End'
-              'end-xs':
+              'top-xs':
                 label: 'Top'
               'middle-xs':
                 label: 'Middle'
@@ -954,7 +917,7 @@
                 label: 'Center'
               'end-sm':
                 label: 'End'
-              'end-sm':
+              'top-sm':
                 label: 'Top'
               'middle-sm':
                 label: 'Middle'
@@ -979,7 +942,7 @@
                 label: 'Center'
               'end-md':
                 label: 'End'
-              'end-md':
+              'top-md':
                 label: 'Top'
               'middle-md':
                 label: 'Middle'
@@ -1004,7 +967,7 @@
                 label: 'Center'
               'end-lg':
                 label: 'End'
-              'end-lg':
+              'top-lg':
                 label: 'Top'
               'middle-lg':
                 label: 'Middle'
